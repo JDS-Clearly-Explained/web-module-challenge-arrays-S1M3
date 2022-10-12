@@ -46,8 +46,9 @@ Use the copy function below to do the following:
 */
 
 
-function copy(/*your code here*/){
-  /*your code here*/
+function copy(originalFlavors){
+  let arrayCopy = [...originalFlavors];
+  return arrayCopy;
 }
 
 
@@ -63,8 +64,8 @@ For Example: is31Flavors(originalFlavors) will return true if your code is worki
 */
 
 
-function is31Flavors(/*your code here*/){
-  /*your code here*/
+function is31Flavors(originalFlavors){
+  return originalFlavors.length === 31;
  }
 
 
@@ -82,8 +83,9 @@ Use the addFlavor function below to do the following:
 */
 
 
-function addFlavor(/*your code here*/){
-  /*your code here*/
+function addFlavor(flavors, newFlavor){
+  flavors.unshift(newFlavor);
+  return flavors;
  }
 
 
@@ -100,8 +102,9 @@ Use the removeLastFlavor function below to do the following:
 */
 
 
-function removeLastFlavor(/*your code here*/){
- /*your code here*/
+function removeLastFlavor(flavors){
+  flavors.pop();
+  return flavors;
 }
 
 
@@ -118,8 +121,8 @@ Use the getFlavorByIndex function below to do the following:
 */
 
 
-function getFlavorByIndex(/*your code here*/){
-  /*your code here*/
+function getFlavorByIndex(flavors, index){
+  return flavors[index];
 }
 
 
@@ -138,8 +141,10 @@ Use the removeFlavorByName function below to do the following:
   HINT: You can use .splice() for this
 */
 
-function removeFlavorByName(/*your code here*/){
-  /*your code here*/
+function removeFlavorByName(flavors, flavorName){
+  let index = flavors.indexOf(flavorName);
+  flavors.splice(index, 1);
+  return flavors;
 }
 
 
@@ -163,8 +168,14 @@ Use the filterByWord function below to do the following:
 */
 
 
-function filterByWord(/*your code here*/){
-  /*your code here*/
+function filterByWord(flavors, filterValue){
+  let filteredArray = [];
+  for (let i = 0; i < flavors.length; i++){
+    if (flavors[i].includes(filterValue)){
+      filteredArray.push(flavors[i]);
+    }
+  }
+  return filteredArray;
 }
 
 
@@ -181,9 +192,16 @@ Use the getAverageWordLength function below to do the following:
   For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-  /*code here*/
+function getAverageWordLength(flavors){
+  let totalWords = 0;
+  for (let i = 0; i < flavors.length; i++){
+    let words = flavors[i].split(" ");
+    totalWords += words.length;
+  }
+  return totalWords / flavors.length;
 }
+
+console.log(getAverageWordLength(originalFlavors));
 
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
@@ -199,8 +217,14 @@ Use the getRandomFlavors function and new arrays below to do the following:
 */
 
 
-function getRandomFlavors(/*code here*/){
-  /*code here*/
+function getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors){
+  let randomFlavors = [];
+  let allFlavors = originalFlavors.concat(newFlavors, seasonalFlavors, regionalFlavors);
+  for (let i = 0; i < 31; i++){
+    let randomIndex = Math.floor(Math.random() * allFlavors.length);
+    randomFlavors.push(allFlavors[randomIndex]);
+  }
+  return randomFlavors;
 }
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️

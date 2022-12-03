@@ -45,7 +45,11 @@ Use the copy function below to do the following:
   2. Return a copy of the received array  
 */
 
-
+// NOTES:
+// 1. The copy function should return a copy of the originalFlavors array
+// 2. The copy function should not modify the originalFlavors array
+// 3. The copy function should return an array
+// 4. The copy function should return an array with 31 items
 function copy(originalFlavors){
   let arrayCopy = [...originalFlavors];
   return arrayCopy;
@@ -65,6 +69,7 @@ For Example: is31Flavors(originalFlavors) will return true if your code is worki
 
 
 function is31Flavors(originalFlavors){
+  // return true if the length of the array is 31
   return originalFlavors.length === 31;
  }
 
@@ -84,7 +89,9 @@ Use the addFlavor function below to do the following:
 
 
 function addFlavor(flavors, newFlavor){
+  // add the new flavor to the front of the flavors array using the array method unshift
   flavors.unshift(newFlavor);
+  // return the resulting array
   return flavors;
  }
 
@@ -103,6 +110,7 @@ Use the removeLastFlavor function below to do the following:
 
 
 function removeLastFlavor(flavors){
+  // remove the last item from the flavors array using the array method pop
   flavors.pop();
   return flavors;
 }
@@ -121,7 +129,8 @@ Use the getFlavorByIndex function below to do the following:
 */
 
 
-function getFlavorByIndex(flavors, index){
+function getFlavorByIndex(flavors, index){ 
+  // return the flavor at the given index
   return flavors[index];
 }
 
@@ -142,7 +151,9 @@ Use the removeFlavorByName function below to do the following:
 */
 
 function removeFlavorByName(flavors, flavorName){
+  // find the index of the flavorName in the flavors array using the array method indexOf
   let index = flavors.indexOf(flavorName);
+  // remove the flavor at the found index using the array method splice
   flavors.splice(index, 1);
   return flavors;
 }
@@ -169,9 +180,13 @@ Use the filterByWord function below to do the following:
 
 
 function filterByWord(flavors, filterValue){
+  // create a new array to hold the filtered flavors
   let filteredArray = [];
+  // loop through the flavors array
   for (let i = 0; i < flavors.length; i++){
+    // check to see if the current flavor includes the filterValue
     if (flavors[i].includes(filterValue)){
+      // if it does, add it to the filteredArray
       filteredArray.push(flavors[i]);
     }
   }
@@ -193,11 +208,15 @@ Use the getAverageWordLength function below to do the following:
 */
 
 function getAverageWordLength(flavors){
+  // create a variable to hold the total number of words
   let totalWords = 0;
   for (let i = 0; i < flavors.length; i++){
+    // split the current flavor into an array of words using the string method split and the space character as a separator
     let words = flavors[i].split(" ");
+    // add the number of words in the current flavor to the total number of words
     totalWords += words.length;
   }
+  // return the average number of words by dividing the total number of words by the number of flavors
   return totalWords / flavors.length;
 }
 
@@ -218,10 +237,14 @@ Use the getRandomFlavors function and new arrays below to do the following:
 
 
 function getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors){
+  // create a new array to hold the random flavors
   let randomFlavors = [];
+  // create a new array that contains all the flavors
   let allFlavors = originalFlavors.concat(newFlavors, seasonalFlavors, regionalFlavors);
   for (let i = 0; i < 31; i++){
+    // randomly select a flavor from the allFlavors array using the Math.random() method to generate a random number between 0 and 1 and multiplying it by the length of the allFlavors array and rounding down to the nearest integer
     let randomIndex = Math.floor(Math.random() * allFlavors.length);
+    // add the randomly selected flavor to the randomFlavors array
     randomFlavors.push(allFlavors[randomIndex]);
   }
   return randomFlavors;
